@@ -1,0 +1,11 @@
+input[type=file] {
+  display: inline-block;
+}
+
+h1 {
+  margin: 50px auto 50px;
+}
+
+.container div#output {
+  margin-top:20px;
+}
