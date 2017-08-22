@@ -40,42 +40,29 @@ function closeSession() {
 }
 
 //function deleteMailchimpMembers( $email, $listId, $data = array() )
-function deleteMailchimpMembers($data = array())
+function mailchimpCurlConnect($requestType, $data = array(), $url_end)
 {
-    $apiKey = 'e94add562694872e8855b1efa1a04029-us5';
+    $apiKey = '7f156b2cb5cdd249bec1312e7e7fe2c0-us5';
     //$memberId = md5(strtolower($email));
     $dataCenter = substr($apiKey, strpos($apiKey, '-') + 1);
-    $url = 'https://' . $dataCenter . '.api.mailchimp.com/3.0/batches';
+    $url = 'https://' . $dataCenter . '.api.mailchimp.com/3.0' . $url_end;
     $headers = array(
       'Content-Type: application/json',
       'Authorization: Basic '.base64_encode('user:'.$apiKey)
     );
-    // $url = 'https://' . $dataCenter . '.api.mailchimp.com/3.0/lists/' . $listId . '/members/' . $memberId;
-    // $json = json_encode
-    // (
-    //     [
-    //         'email_address' => $email
-    //     ]
-    // );
-    //$ch = curl_init($url);
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_USERPWD, 'user:' . $apiKey);
-    //curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');//'DELETE');
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $requestType);//'DELETE');
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-    //curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-    curl_setopt($ch, CURLOPT_POST, TRUE); //added
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    if ($requestType != 'GET') {
+      curl_setopt($ch, CURLOPT_POST, TRUE); //added
+      curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    }
     $result = curl_exec($ch);
-
-    echo '<pre>';
-    print_r($result);
-    echo '</pre>';
-    exit;
 
     if (!curl_errno($ch)) {
       switch ($http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE)) {
@@ -84,28 +71,25 @@ function deleteMailchimpMembers($data = array())
         case 204: //No Content
           break;
         default:
-          //echo 'Unexpected HTTP code: ', $http_code, "\n";
           $errorCode = 'Unexpected HTTP code: ' . $http_code . "\n";
       }
     }
-    //$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
 
-    //return $httpCode;
-    return $errorCode;
+    $batchId = json_decode($result)->id;
+    $response = array ($batchId, $errorCode, $result);
+
+    return $response;
 }
 
-function batch_op($emails = array(), $listId)
+function batch_op($requestType, $emails = array(), $listId)
 {
-    //$api_key
-    //$listid
-    //$url
     $data = new stdClass();
     $data->operations = array();
 
     foreach ($emails as $email) {
       $batch = new stdClass();
-      $batch->method = 'POST';//'DELETE';
+      $batch->method = $requestType; //'DELETE';
       $batch->path = 'lists/' . $listId . '/members';
       $batch->body = json_encode(
         array(
@@ -194,9 +178,6 @@ if (!empty($_FILES)) {
             }
         } else {
             $output = $errors;
-            // echo '<pre>';
-            // print_r($errors);
-            // echo '<pre>';
         }
     }
 }
@@ -271,18 +252,23 @@ if (isset($_POST['Delete'])) {
         $output[] = '<strong>Deleting data...</strong>'.'<br>';
 
         // ***Batch Code Testing ***
-        $batch_op_data = batch_op($_SESSION['data'], $listId);
+        $batch_op_data = batch_op('POST', $_SESSION['data'], $listId);
 
         // echo '<pre>';
-        // print_r($_SESSION['data']);
         // print_r(json_encode($batch_op_data));
         // echo '</pre>';
         // exit;
 
-
         //*******************
         // Deletes emails
-        //$error = deleteMailchimpMembers($batch_op_data);//.'<br>';
+        //$res = mailchimpCurlConnect('POST', $batch_op_data, '/batches');//.'<br>';
+        //$res2 = mailchimpCurlConnect('GET','','/batches/'.$res[0]);
+        $res2 = mailchimpCurlConnect('GET','','/batches/5348059794');
+        echo '<pre>';
+        print_r($res2[2]);
+        echo '</pre>';
+        exit;
+        $error = $res[1];
         //*******************
         if (empty($error)) {
           $output[] = 'Gray emails successfully deleted.'.'<br>';
