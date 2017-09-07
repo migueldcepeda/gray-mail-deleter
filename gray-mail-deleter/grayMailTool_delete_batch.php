@@ -42,14 +42,16 @@ function closeSession() {
 //function deleteMailchimpMembers( $email, $listId, $data = array() )
 function mailchimpCurlConnect($requestType, $data = array(), $url_end)
 {
-    $apiKey = '7f156b2cb5cdd249bec1312e7e7fe2c0-us5';
+    $config = parse_ini_file('../config.ini', true);
+    $apiKey = $config['apiKey'];
     //$memberId = md5(strtolower($email));
-    $dataCenter = substr($apiKey, strpos($apiKey, '-') + 1);
+    $dataCenter = substr($apiKey , strpos($apiKey , '-') + 1);
     $url = 'https://' . $dataCenter . '.api.mailchimp.com/3.0' . $url_end;
     $headers = array(
       'Content-Type: application/json',
-      'Authorization: Basic '.base64_encode('user:'.$apiKey)
+      'Authorization: Basic '.base64_encode('user:'.$apiKey )
     );
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_USERPWD, 'user:' . $apiKey);
@@ -82,19 +84,20 @@ function mailchimpCurlConnect($requestType, $data = array(), $url_end)
     return $response;
 }
 
-function batch_op($requestType, $emails = array(), $listId)
+function batch_del($emails = array(), $listId)
 {
     $data = new stdClass();
     $data->operations = array();
 
     foreach ($emails as $email) {
+      $memberId = md5(strtolower($email));
       $batch = new stdClass();
-      $batch->method = $requestType; //'DELETE';
-      $batch->path = 'lists/' . $listId . '/members';
+      $batch->method = 'DELETE'; //'DELETE';
+      $batch->path = 'lists/' . $listId . '/members/' . $memberId;
       $batch->body = json_encode(
         array(
-          'email_address' => $email,
-          'status' => 'unsubscribed'
+          'email_address' => $email//,
+          //'status' => 'unsubscribed'
         )
       );
       $data->operations[] = $batch;
@@ -172,9 +175,9 @@ if (!empty($_FILES)) {
                 mkdir('uploads', 0777);
             }
             if(move_uploaded_file($tmp, $path)) {
-                $output[] = 'The file <strong>' . $name . '</strong> successfully uploaded.'.'<br>';
+                $output[] = 'The file <strong>' . $name . '</strong> <span style="color: #5cb85c">successfully uploaded.</span>'.'<br>';
             } else {
-                $output[] = 'Something went wrong while uploading the file <strong>' . $name . '</strong>'.'<br>';
+                $output[] = '<span style="color: #c9302c">Something went wrong while uploading the file <strong>' . $name . '</strong></span>'.'<br>';
             }
         } else {
             $output = $errors;
@@ -249,25 +252,29 @@ if (isset($_POST['Delete'])) {
   //$output = array();
     if ($_SESSION['hasDownloaded']) {
         $deleteCount = 0;
-        $output[] = '<strong>Deleting data...</strong>'.'<br>';
+        $output[] = '<strong>Delete request sent...</strong>'.'<br>';
 
         // ***Batch Code Testing ***
-        $batch_op_data = batch_op('POST', $_SESSION['data'], $listId);
+        $batch_del_data = batch_del($_SESSION['data'], $listId);
 
         // echo '<pre>';
-        // print_r(json_encode($batch_op_data));
+        // print_r(json_encode($batch_del_data));
         // echo '</pre>';
         // exit;
 
         //*******************
         // Deletes emails
-        //$res = mailchimpCurlConnect('POST', $batch_op_data, '/batches');//.'<br>';
+        $res = mailchimpCurlConnect('POST', $batch_del_data, '/batches');//.'<br>';
         //$res2 = mailchimpCurlConnect('GET','','/batches/'.$res[0]);
-        $res2 = mailchimpCurlConnect('GET','','/batches/5348059794');
-        echo '<pre>';
-        print_r($res2[2]);
-        echo '</pre>';
-        exit;
+        // $res2 = mailchimpCurlConnect('GET','','/batches/5348059794');
+        // echo '<pre>';
+        // print_r($res[0]);
+        // print_r('<br>');
+        // print_r($res[1]);
+        // print_r('<br>');
+        // print_r($res[2]);
+        // echo '</pre>';
+        // exit;
         $error = $res[1];
         //*******************
         if (empty($error)) {
