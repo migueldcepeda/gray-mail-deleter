@@ -288,6 +288,15 @@ if (isset($_POST['Delete'])) {
 
     closeSession();
 }
+
+//<!--*************************
+// *** TEST MODAL
+//************************-->
+// if (isset($_POST['Test'])) {
+//     echo '<pre>';
+//     echo 'Works!';
+//     echo '</pre>';
+// }
 ?>
 
 <!--*************************
@@ -315,7 +324,7 @@ if (isset($_POST['Delete'])) {
               <input class="btn btn-info" type="submit" name="Upload" value="Upload">
               <input class="btn btn-success" type="submit" name="Download" value="Download">
               <input class="btn btn-danger" type="submit" name="Delete" value="Delete">
-              <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button> -->
+              <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> -->
             </form>
         </div>
       </div>
@@ -336,7 +345,7 @@ if (isset($_POST['Delete'])) {
     </div>
 
     <!-- Modal -->
-    <!-- <div class="modal fade" id="myModal" role="dialog">
+    <!-- <div class="modal fade" id="deleteModal" role="dialog">
       <div class="modal-dialog"> -->
 
         <!-- Modal content-->
@@ -350,7 +359,7 @@ if (isset($_POST['Delete'])) {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <input class="btn btn-danger" type="submit" name="Delete" value="Delete">
+            <input class="btn btn-danger" type="submit" name="Test" value="Test">
           </div>
         </div> -->
 
