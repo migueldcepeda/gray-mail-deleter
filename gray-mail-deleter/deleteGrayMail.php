@@ -17,7 +17,7 @@ if (isset($_POST['Delete'])) {
 
 function deleteMailchimpMember($email,$listId)
 {
-    $apiKey = 'e94add562694872e8855b1efa1a04029-us5';
+    //$apiKey = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-xxx';
 
     $memberId = md5(strtolower($email));
 

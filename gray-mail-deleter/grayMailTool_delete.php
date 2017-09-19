@@ -41,7 +41,7 @@ function closeSession() {
 
 function deleteMailchimpMember($email,$listId)
 {
-    $apiKey = 'e94add562694872e8855b1efa1a04029-us5';
+    //$apiKey = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-xxx';
     $memberId = md5(strtolower($email));
     $dataCenter = substr($apiKey, strpos($apiKey, '-') + 1);
     $url = 'https://' . $dataCenter . '.api.mailchimp.com/3.0/lists/' . $listId . '/members/' . $memberId;
