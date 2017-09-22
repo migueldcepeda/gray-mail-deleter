@@ -323,7 +323,9 @@ if (isset($_POST['Delete'])) {
               <input type="number" name="counter" placeholder="Count" min="1">
               <input class="btn btn-info" type="submit" name="Upload" value="Upload">
               <input class="btn btn-success" type="submit" name="Download" value="Download">
-              <input class="btn btn-danger" type="submit" name="Delete" value="Delete">
+
+              <!-- Delete Button and Modal (not functional) -->
+              <!-- <input class="btn btn-danger" type="submit" name="Delete" value="Delete"> -->
               <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> -->
             </form>
         </div>

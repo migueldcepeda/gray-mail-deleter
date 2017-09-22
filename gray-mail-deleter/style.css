@@ -3,7 +3,7 @@ input[type=file] {
 }
 
 h1 {
-  margin: 50px auto 50px;
+  margin: 50px auto 30px;
 }
 
 h3 {
@@ -11,7 +11,31 @@ h3 {
 }
 
 .wrapper {
-  margin: 0 auto;
+  width: 70%;
+  margin-left: 15%;
+  /*margin: 0 auto;  */
+}
+
+.col-xs-12 {
+  margin-bottom: 30px;
+}
+
+form {
+  margin-top: 25px;
+}
+
+button {
+  position: fixed;
+  top: 8px;
+  right: 16px;
+}
+
+input[name="batchSubmit"] {
+  margin-left: 85px;
+}
+
+input[type=file] {
+  width: 200px;
 }
 
 .container div#output {
