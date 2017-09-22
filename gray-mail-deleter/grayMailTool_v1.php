@@ -306,7 +306,7 @@ if (isset($_POST['Delete'])) {
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Gray Mail Deleter</title>
+    <title>Gray Mail Finder</title>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -317,7 +317,7 @@ if (isset($_POST['Delete'])) {
     <div class="container">
       <div class="row">
         <div class="col-xs-12 text-center">
-          <h1>Gray Mail Deleter</h1>
+          <h1>Gray Mail Finder</h1>
             <form method="post" enctype="multipart/form-data" class="form-inline">
               <input type="file" name="files[]" multiple>
               <input type="number" name="counter" placeholder="Count" min="1">
