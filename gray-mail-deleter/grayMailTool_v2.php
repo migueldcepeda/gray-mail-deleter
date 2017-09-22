@@ -22,6 +22,7 @@ if ($_SESSION['activeSession']) {
 
 // ***** DEBUGGER *****
 // echo '<pre>';
+// $inipath = php_ini_loaded_file();
 // print_r($inipath);
 // echo '</pre>';
 // exit;
@@ -301,9 +302,11 @@ if (isset($_POST['JSONsubmit'])) {
                     // Calculate time since opt in
                     $diffTime = time() - strtotime($timestamp_opt);
                     $days = $days_threshold;
+                    // $diffTime = (strtotime($timestamp_opt) - strtotime('26 May 2017'))/60/60/24;
 
                     // Print emails under requirements
                     if ($member_rating <= 2 && $subscription_status == 'subscribed' && $diffTime > 60*60*24*$days) {
+                    // if ($subscription_status == 'subscribed' && $diffTime >= 0) {
                         array_push($content, $email_address);
                     }
                     // Print emails with fields
