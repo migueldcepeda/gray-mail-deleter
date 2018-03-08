@@ -1,0 +1,65 @@
+input[type=file] {
+  display: inline-block;
+}
+
+h1 {
+  margin: 50px auto 30px;
+}
+
+h3 {
+  margin-left: 150px;
+}
+
+.wrapper {
+  width: 70%;
+  margin-left: 15%;
+  /*margin: 0 auto;  */
+}
+
+.col-xs-12 {
+  margin-bottom: 30px;
+}
+
+form {
+  margin-top: 25px;
+}
+
+button.close {
+  position: fixed;
+  top: 8px;
+  right: 16px;
+}
+
+/* removed for version 3 layout */
+/* input[name="batchSubmit"] {
+  margin-left: 47px;
+}
+input[name="JSONsubmit"] {
+  margin-left: 15px;
+} */
+
+input[name="batchSubmit"],
+input[name="JSONsubmit"] {
+  display: block;
+  margin-top: 15px;
+}
+
+input[type=file] {
+  width: 200px;
+}
+
+#campaigns {
+  margin-top: 15px;
+  padding: 0;
+  width: 100%;
+  height: 16em;
+}
+
+#campaigns option {
+  padding: 5px 10px;
+}
+
+.container div#output {
+  margin-top:50px;
+  font-family: monospace;
+}
