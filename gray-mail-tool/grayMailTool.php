@@ -537,7 +537,6 @@ if (isset($_POST['Abort'])) {
                                 <input type="file" class="form-control-file" id="file" name="files[]" multiple>
                             </div>
                             <input <?php echo $up_down_load_btn ?> type="submit" name="JSONsubmit" >
-                            <!--?php echo $delete_btn ?-->
                         </form>
                     </div>
                 </div>
