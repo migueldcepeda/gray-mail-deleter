@@ -423,7 +423,6 @@ if (isset($_POST['JSONsubmit'])) {
             writeCSV('result_emails.csv', $content);
             $_SESSION['hasUploaded'] = true;
             $up_down_load_btn = 'class="btn btn-success" value="Download"';
-            $delete_btn = '<input class="btn btn-danger" type="submit" name="Delete" value="Delete">';
         } else {
             $output = '<pre>'.'Please select files to be uploaded.'.'</pre>';
         }
