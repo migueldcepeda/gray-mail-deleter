@@ -14,7 +14,7 @@ In testing our subscriber data through the course of this project, a total of te
 
 ## Installation
 
-If not already done so, begin by downloading [MAMP](MAMP or MAMP PRO) onto your machine. A license may be provided to you for the installation of MAMP PRO by UIE's System Administrator.
+If not already done so, begin by downloading [MAMP or MAMP PRO][mamp] onto your machine. A license may be provided to you for the installation of MAMP PRO by UIE's System Administrator.
 
 Clone the repository into a newly created project directory. In the project directory, one level above downloaded repository, create a file named `config.ini` and enter your Mailchimp API key in the following format:
 
@@ -22,7 +22,7 @@ Clone the repository into a newly created project directory. In the project dire
 apiKey = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-us5'
 ```
 
-_For more information on generating and accessing API keys through Mailchimp, visit [mc-api](Mailchimps's API Documentation)_
+_For more information on generating and accessing API keys through Mailchimp, visit [Mailchimps's API Documentation][mc-api]_
 
     .
     ├── gray-mail-tools  
