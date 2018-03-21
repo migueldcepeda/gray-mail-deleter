@@ -16,7 +16,7 @@ In testing our subscriber data through the course of this project, a total of te
 
 If not already done so, begin by downloading [MAMP or MAMP PRO][mamp] onto your machine. A license may be provided to you for the installation of MAMP PRO by UIE's System Administrator.
 
-Clone the repository into a newly created project directory. In the project directory, one level above downloaded repository, create a file named `config.ini` and enter your Mailchimp API key in the following format:
+Clone the repository and set the _Document root_ in MAMP to the included directory labeled _gray-mail-tool_. Back in the main project directory (_gray-mail-tool-master_), create a file named `config.ini` and enter your Mailchimp API key in the following format:
 
 ```
 apiKey = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-us5'
@@ -36,7 +36,7 @@ _For more information on generating and accessing API keys through Mailchimp, vi
 ### MAMP Configuration File Edits
 
 #### php.ini file
-To edit the `php.ini` file, open MAMP PRO and navigate to the path: *File > Edit Template > PHP (php.ini)*. From the dropdown menu, select the file that corresponds with the latest PHP version used.
+To edit the `php.ini` file, open MAMP PRO and navigate to the path: *File > Edit Template > PHP (php.ini)*. From the dropdown menu, select the file that corresponds with the latest PHP version.
 
 Edit the following:
 ```
@@ -52,7 +52,7 @@ post_max_size = 128M
 ```
 
 #### .htaccess file in /Applications/MAMP/htdocs
-Find and edit the following:
+Find and enter the following (file may not have content):
 ```
 RewriteEngine On
 php_value max_file_uploads 100000
@@ -68,6 +68,7 @@ Find and edit the following:
 ```
 
 ## Usage example
+Enable the tool by running your MAMP server (clicking on the 'Servers' power button) and clicking on 'WebStart'. This will open your server on your browser beginning with `localhost:_your_port_number_/`. Change this url to `localhost:_your_port_number_/grayMailTool.php` and hit enter.
 
 <!-- ### Gray Mail Tool -->
 
