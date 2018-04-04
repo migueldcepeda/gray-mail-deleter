@@ -20,7 +20,8 @@ if (!$_SESSION['batchPending']) {
 } else {
     $batch_btn_style = 'class="btn btn-success" value="Check Batch"';
 }
-$up_down_load_btn = 'class="btn btn-info" value="Upload"';
+$upload_btn = 'class="btn btn-info" value="Upload"';
+$download_btn = 'style="display:none;"';
 if ($_SESSION['activeSession']) {
     $abort_btn = 'style="display:inline;"';
 } else {
@@ -422,7 +423,8 @@ if (isset($_POST['JSONsubmit'])) {
 
             writeCSV('result_emails.csv', $content);
             $_SESSION['hasUploaded'] = true;
-            $up_down_load_btn = 'class="btn btn-success" value="Download"';
+            $upload_btn = 'class="btn btn-info" value="Upload" disabled="disabled"';
+            $download_btn = 'class="btn btn-success" value="Download"';
         } else {
             $output = '<pre>'.'Please select files to be uploaded.'.'</pre>';
         }
@@ -535,7 +537,10 @@ if (isset($_POST['Abort'])) {
                             <div class="form-group">
                                 <input type="file" class="form-control-file" id="file" name="files[]" multiple>
                             </div>
-                            <input <?php echo $up_down_load_btn ?> type="submit" name="JSONsubmit" >
+                            <div class="JSONbuttonWrapper">
+                                <input <?php echo $upload_btn ?> type="submit" name="JSONsubmit">
+                                <input <?php echo $download_btn ?> type="submit" name="JSONsubmit">
+                            </div>
                         </form>
                     </div>
                 </div>

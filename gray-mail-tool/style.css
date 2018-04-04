@@ -38,9 +38,12 @@ input[name="JSONsubmit"] {
   margin-left: 15px;
 } */
 
-input[name="batchSubmit"],
-input[name="JSONsubmit"] {
+input[name="batchSubmit"] {
   display: block;
+  margin-top: 15px;
+}
+
+input[name="JSONsubmit"] {
   margin-top: 15px;
 }
 
