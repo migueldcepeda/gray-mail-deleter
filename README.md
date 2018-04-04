@@ -83,6 +83,8 @@ Begin by selecting the campaign folder you wish to extract gray mail addresses f
 #### Step 2
 Once recent campaigns have loaded, choose multiple campaigns you wish to use in identifying inactive subscribers. The gray mail list generated will be of subscribers who have not opened all of these chosen campaigns.
 
+_**Important Note**: Campaign folders and recent campaigns are loaded from MailChimp's campaign folders, so make sure that all campaign filing is up to date before using tool._
+
 ![image](./screenshots/GMT_Step2.png)
 
 #### Step 3
