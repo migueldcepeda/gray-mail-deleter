@@ -113,11 +113,17 @@ On your machine unzip the .tar.gz file and rename the folder to something you ca
 
 #### Step 5
 
-Once the **Upload** button is selected, the files will be processed and the **Upload** button will change into a green **Download** button. Click on this to download a dated .csv file containing all gray mail addresses for the selected campaign type.
+Once the **Upload** button is selected, the files will be processed and a **Download** button will appear to the right of the **Upload**. Click on this to download a dated .csv file containing all gray mail addresses for the selected campaign type.
 
 ![image](./screenshots/GMT_Step5.png)
 
 *Note: Once files have been uploaded, downloading the .csv file is required before uploading again (as indicated by the green download button persisting).*
+
+_**Important Note**: The optimal way to refresh the gray mail tool is by clicking and selecting its URL in the URL bar and hitting 'Enter'._
+
+#### Step 6
+
+Once the .csv files are created for each campaign type, the gray emails can be removed from their respective MailChimp groups by following [MailChimp's documentation on removing multiple subscribers from groups][mc-remove-subscribers]. Prior to this, it is wise to save these emails first in a gray mail spreadsheet created on a shared Google Drive folder that exists at the time of writing this.
 
 ## Built With
 * PHP
@@ -148,6 +154,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 [mc-api]: https://kb.mailchimp.com/integrations/api-integrations/about-api-keys
 [mc-export]: https://kb.mailchimp.com/lists/manage-contacts/view-or-export-a-list
 [mc-playground]: https://us1.api.mailchimp.com/playground/
+[mc-remove-subscribers]: https://kb.mailchimp.com/lists/manage-contacts/remove-subscribers-from-groups
 
 <!-- ## Config files
 
